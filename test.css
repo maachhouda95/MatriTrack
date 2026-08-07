@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body{
+    background: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /*centre horizontalle*/
+    align-items: center; /*centre verticale*/
+    display: grid;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.container{
+   border: 2px solid white;
+   border-radius: 10px;
+   padding: 40px;
+   margin: 60px; 
+   width: 400px;
+   padding: 40px;
+   text-align: center;
+   background-color: white;
+   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);s
+}
+
+.container label{
+    width: 140px;
+    text-align:left;
+    font-weight: bold;
+    font-family: "Source Code Pro", monospace;
+}
+
+.login{
+    color: #35B8C0;
+    font-family: "Edu VIC WA NT Hand", cursive;
+}
+
+.input-login{
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    
+}
+
+.label-login{
+    font-family: "Source Code Pro", monospace;
+    font-size: 15px;
+    color: black;
+    margin-top: 20px;
+}
+
+.btn{
+    background-color:#35B8C0;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 40px auto;
+    height: 30px;
+    width: 100px;
+    
+}
+.sub:hover{
+    background-color: #1a6265;
+}
