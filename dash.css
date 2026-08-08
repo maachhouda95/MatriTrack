@@ -169,24 +169,48 @@ main .dispo svg circle{
     stroke-dashoffset: 80;
     stroke-dasharray: 20;
 }
-.success{
-    color: #41f1b6;
-    font-weight: 600;
+main .recent-orders{
+    margin-top: 2rem;
 }
 
-.warning{
-    color: #ffbb55;
-    font-weight: 600;
+main .recent-orders h2{
+    margin-bottom: .8rem;
 }
 
-.danger{
-    color: #ff7782;
-    font-weight: 600;
+main .recent-orders table{
+    width: 100%;
+    background: var(--color-white);
+    border-radius: 2rem;
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    border-collapse: collapse;
 }
 
-.primary{
-    color: #7380ec;
-    cursor: pointer;
-    font-weight: 600;
+main .recent-orders table:hover{
+    box-shadow: none;
+}
+
+main table thead tr th{
+    height: 3rem;
+    border-bottom: 1px solid var(--color-light);
+}
+
+main table tbody td{
+    height: 3.2rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+main table tbody tr:last-child td{
+    border: none;
+}
+
+main .recent-orders a{
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+    color: var(--color-primary);
 }
 
