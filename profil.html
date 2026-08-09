@@ -1,44 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mark_email_unread" />
+
+    <title>Profile</title>
+
     <link rel="stylesheet" href="profil.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
+
 <body>
-    <div class="profil-container">
-        <div class="prof-info">
-            <img src="Tony-Stark.webp" alt="">
-            <h3>Tony Stark</h3>
-            <h4>Administrateur</h4>
-            <h5>Responsable de la gestion des equipements et du suivi du parc informatique</h5>
+
+    <aside>
+
+        <div class="logo">
+            <img src="Colaimo.jpg" alt="COLAIMO Logo">
+            <h2>COLAIMO</h2>
+        </div>
+
+        <a href="dashboard.html">
+            <span class="material-symbols-outlined">
+                dashboard
+            </span>
+            <h3>Dashboard</h3>
+        </a>
+
+        <a href="search.html">
+            <span class="material-symbols-outlined">
+                content_paste_search
+            </span>
+            <h3>Search</h3>
+        </a>
+
+        <a href="add.html">
+            <span class="material-symbols-outlined">
+                add_box
+            </span>
+            <h3>Add</h3>
+        </a>
+
+        <a href="profile.html" class="active">
+            <span class="material-symbols-outlined">
+                person
+            </span>
+            <h3>Profile</h3>
+        </a>
+
+    </aside>
+    
+    <main>
+
+        <div class="profile-page">
+
+            <div class="prof-info">
+
+                <div class="profile-picture">
+                    <img src="Tony-Stark.webp" alt="Profile">
+                </div>
+
+                <div class="profile-main">
+
+                    <h1>Tony Stark</h1>
+
+                    <p class="job">
+                        Administrateur
+                    </p>
+
+                    <p class="description">
+                        Responsable de la gestion des équipements
+                        et du suivi du parc informatique.
+                    </p>
+
+                </div>
+
+                <div class="profile-details">
+
+                    <div class="email">
+                        <span class="material-symbols-outlined">
+                            mark_email_unread
+                        </span>
+
+                        <h3>admin@gmail.com</h3>
+                    </div>
+
+                    <div class="phone">
+                        <span class="material-symbols-outlined">
+                            phone_in_talk
+                        </span>
+
+                        <h3>+212 5 12 34 56 78</h3>
+                    </div>
+
+                    <div class="role">
+                        <span class="material-symbols-outlined">
+                            admin_panel_settings
+                        </span>
+
+                        <h3>Role : Administrateur</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-form">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone">Téléphone</label>
+                        <input type="tel" id="telephone">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="post">Poste</label>
+                        <input type="text" id="post">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" id="adresse">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="date-naissance">
+                            Date de naissance
+                        </label>
+
+                        <input type="date" id="date-naissance">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="langue">Langue</label>
+
+                        <select id="langue">
+                            <option>Français</option>
+                            <option>Anglais</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
-        <div>
-            <div class="email">
-                <span class="material-symbols-outlined">
-                 mark_email_unread
-                </span>
-                <h3>admin@colaimo.com</h3>
-            </div>
-            <div class="phone">
-                <span class="material-symbols-outlined">
-                    phone_in_talk
-                </span>
-                <h3>+212 5 12 34 56 78</h3>
-            </div>
-            <div class="role">
-                <span class="material-symbols-outlined">
-                    admin_panel_settings
-                </span>
-                <h3>Role:administrateur</h3>
 
-            </div>
-            
+    </main>
 
-        </div>
-    </div>
 </body>
 </html>
