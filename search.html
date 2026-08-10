@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 <body>
      <aside>
 
         <div class="logo">
             <img src="Colaimo.jpg" alt="COLAIMO Logo">
-            <h2>COLAIMO</h2>
+            <h2>MatriTrack</h2>
         </div>
 
         <a href="dashboard.html">
@@ -42,5 +45,243 @@
         </a>
 
     </aside>
+
+    <main>
+
+
+    <div class="page-header">
+
+        <div>
+            <h1>Liste des matériels</h1>
+            <p>Gestion et suivi du parc informatique</p>
+        </div>
+
+        <a href="add.html" class="add-button">
+            <span class="material-symbols-outlined">
+                add
+            </span>
+            Ajouter un matériel
+        </a>
+
+    </div>
+
+
+
+    <div class="search-box">
+
+        <span class="material-symbols-outlined">
+            search
+        </span>
+
+        <input
+            type="text"
+            placeholder="Rechercher un matériel..."
+        >
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Référence</th>
+                    <th>Type</th>
+                    <th>Marque</th>
+                    <th>Personne</th>
+                    <th>Département</th>
+                    <th>État</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+               
+
+                <tr>
+
+                    <td>MAT-001</td>
+
+                    <td>PC</td>
+
+                    <td>MSI</td>
+
+                    <td>Ahmed El Amrani</td>
+
+                    <td>Informatique</td>
+
+                    <td>
+                        <span class="status available">
+                            Disponible
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            
+
+                            <button class="edit">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
+
+                            
+
+                            <button class="delete">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                
+
+                <tr>
+
+                    <td>MAT-002</td>
+
+                    <td>Clavier</td>
+
+                    <td>Logitech</td>
+
+                    <td>Sara Benali</td>
+
+                    <td>Finance</td>
+
+                    <td>
+                        <span class="status assigned">
+                            Affecté
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button class="edit">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
+
+                            <button class="delete">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+                
+
+                <tr>
+
+                    <td>MAT-003</td>
+
+                    <td>Souris</td>
+
+                    <td>HP</td>
+
+                    <td>Youssef Alaoui</td>
+
+                    <td>Ressources Humaines</td>
+
+                    <td>
+                        <span class="status maintenance">
+                            Maintenance
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button class="edit">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
+
+                            <button class="delete">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+
+               
+
+                <tr>
+
+                    <td>MAT-004</td>
+
+                    <td>Imprimante</td>
+
+                    <td>HP</td>
+
+                    <td>—</td>
+
+                    <td>Comptabilité</td>
+
+                    <td>
+                        <span class="status available">
+                            Disponible
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button class="edit">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
+
+                            <button class="delete">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
 </body>
 </html>

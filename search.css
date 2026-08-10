@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f6fa;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+aside {
+    width: 250px;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 20px;
+
+    flex-shrink: 0;
+
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 0;
+    margin-bottom: 35px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+aside a {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #555;
+
+    transition: 0.3s;
+}
+
+aside a span {
+    font-size: 25px;
+}
+
+aside a h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+aside a:hover {
+    background: #4F46E5;
+    color: white;
+}
+
+aside a.active {
+    background: #4F46E5;
+    color: white;
+}
+
+.close {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+
+    cursor: pointer;
+}
+
+.close span {
+    font-size: 28px;
+    color: #444;
+}
+
+
+main {
+    flex: 1;
+    padding: 40px;
+    min-width: 0;
+}
+
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    color: #2c3e50;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+.add-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    background: #4F46E5;
+    color: white;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.add-button:hover {
+    background: #3730A3;
+}
+
+.add-button span {
+    font-size: 20px;
+}
+
+
+.search-box {
+    width: 100%;
+
+    background: white;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.search-box span {
+    color: #777;
+    font-size: 22px;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+
+    background: transparent;
+}
+
+
+.table-container {
+    width: 100%;
+
+    background: white;
+
+    border-radius: 15px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+thead {
+    background: #f8f8fc;
+}
+
+th {
+    text-align: left;
+
+    padding: 18px;
+
+    font-size: 13px;
+
+    color: #555;
+
+    font-weight: 600;
+}
+
+td {
+    padding: 18px;
+
+    border-top: 1px solid #eee;
+
+    font-size: 14px;
+
+    color: #444;
+}
+
+tbody tr {
+    transition: 0.2s;
+}
+
+tbody tr:hover {
+    background: #fafaff;
+}
+
+.status {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.available {
+    background: #e8f7ee;
+    color: #219653;
+}
+.assigned {
+    background: #eeeaff;
+    color: #4F46E5;
+}
+
+
+.maintenance {
+    background: #fff4df;
+    color: #d68910;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.actions button {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.actions button span {
+    font-size: 19px;
+}
+
+
+.edit {
+    background: #fff4df;
+    color: #d68910;
+}
+
+.edit:hover {
+    background: #d68910;
+    color: white;
+}
+
+.delete {
+    background: #ffe9e9;
+    color: #e74c3c;
+}
+
+.delete:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+
+@media screen and (max-width: 800px) {
+
+    main {
+        padding: 25px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .add-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

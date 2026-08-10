@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="Add.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
 <body>
      <aside>
 
         <div class="logo">
             <img src="Colaimo.jpg" alt="COLAIMO Logo">
-            <h2>COLAIMO</h2>
+            <h2>MatriTrack</h2>
         </div>
 
         <a href="dashboard.html">
@@ -42,5 +45,59 @@
         </a>
 
     </aside>
+
+    <main>
+       <div class="add-mater">
+        <div>
+            <h3>Ajouter un materiel</h3>
+            <h4>Remplissez les informations pour ajouter un nouveau materiel au parc informatique</h4>
+        </div>
+        <div class="info-mater">
+
+
+
+            <div>
+                <label for="type"> Type de materiel</label>
+                <select name="" id="">
+                    <option value="">Pc</option>
+                    <option value="">Souris</option>
+                    <option value="">Clavier</option>
+                    <option value="">Unite centrale</option>
+                    <option value="">Impremante</option>
+                </select>
+                
+                
+            </div>
+
+             <div>
+                <label for="marque">Marque</label>
+                <input type="text" id="marque">
+            </div>
+
+
+             <div>
+                <label for="">Nom complet</label>
+                <input type="text">
+            </div>
+
+
+
+             <div>
+                <label for="">Departement</label>
+                <select name="departement" id="departement">
+                    <option value="">Sélectionner un département</option>
+                    <option value="informatique">Informatique</option>
+                    <option value="rh">Ressources Humaines</option>
+                    <option value="finance">Finance</option>
+                    <option value="comptabilite">Comptabilité</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="production">Production</option>
+                </select>
+            </div>
+
+        </div>
+
+       </div> 
+    </main>
 </body>
 </html>
