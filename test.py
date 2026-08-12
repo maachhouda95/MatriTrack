@@ -11,13 +11,11 @@ db = mysql.connector.connect(
     database="MatriTrack"
 )
 
-print("Database connected successfully!")
-
 
 @app.route("/")
 def home():
-    return "Flask is working!"
+    return render_template ('')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) 
