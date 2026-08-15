@@ -16,28 +16,28 @@
             <h2>MatriTrack</h2>
         </div>
 
-        <a href="dashboard.html">
+        <a href="{{ url_for('dashboard') }}">
             <span class="material-symbols-outlined">
                 dashboard
             </span>
             <h3>Dashboard</h3>
         </a>
 
-        <a href="search.html">
+        <a href="{{ url_for('search') }}">
             <span class="material-symbols-outlined">
                 content_paste_search
             </span>
             <h3>Search</h3>
         </a>
 
-        <a href="add.html">
+        <a href="{{ url_for('add') }}">
             <span class="material-symbols-outlined">
                 add_box
             </span>
             <h3>Add</h3>
         </a>
 
-        <a href="profile.html" class="active">
+        <a href="{{ url_for('profile') }}" class="active">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -54,31 +54,31 @@
         </div>
         <div class="info-mater">
 
-
-
-            <div>
-                <label for="type"> Type de materiel</label>
-                <select name="" id="">
-                    <option value="">Pc</option>
-                    <option value="">Souris</option>
-                    <option value="">Clavier</option>
-                    <option value="">Unite centrale</option>
-                    <option value="">Impremante</option>
-                </select>
+            <form  class="info-mater" method="POST" action="{{ url_for('add') }}">
+                <div>
+                    <label for="type"> Type de materiel</label>
+                    <select name="type_materiels" id="type" required>
+                        <option value="">choisis un materiel</option>
+                        <option value="">Pc</option>
+                        <option value="">Souris</option>
+                        <option value="">Clavier</option>
+                        <option value="">Unite centrale</option>
+                        <option value="">Impremante</option>
+                    </select>
                 
                 
-            </div>
+                </div>
 
-             <div>
+                <div>
                 <label for="marque">Marque</label>
-                <input type="text" id="marque">
-            </div>
+                <input type="text" id="marque" name="marque" required>
+                </div>
 
 
              <div>
                 <label for="">Nom complet</label>
-                <input type="text">
-            </div>
+                <input type="text" name="nom_personne" id="nom_personne" required>
+             </div>
 
 
 
@@ -93,10 +93,19 @@
                     <option value="commercial">Commercial</option>
                     <option value="production">Production</option>
                 </select>
-            </div>
+             </div>
+              <button type="submit">Ajouter le matériel</button>
 
-        </div>
+              </div>
 
+
+
+
+            </form>
+
+
+
+           
        </div> 
     </main>
 </body>

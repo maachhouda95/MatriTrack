@@ -22,28 +22,28 @@
             <h2>MatriTrack</h2>
         </div>
 
-        <a href="dashboard.html">
+        <a href="{{ url_for('dashboard') }}">
             <span class="material-symbols-outlined">
                 dashboard
             </span>
             <h3>Dashboard</h3>
         </a>
 
-        <a href="search.html">
+        <a href="{{ url_for('search') }}">
             <span class="material-symbols-outlined">
                 content_paste_search
             </span>
             <h3>Search</h3>
         </a>
 
-        <a href="add.html">
+        <a href="{{ url_for('add') }}">
             <span class="material-symbols-outlined">
                 add_box
             </span>
             <h3>Add</h3>
         </a>
 
-        <a href="profile.html" class="active">
+        <a href="{{ url_for('profile') }}" class="active">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -64,7 +64,7 @@
 
                 <div class="profile-main">
 
-                    <h1>Tony Stark</h1>
+                    <h1>{{ admin.Nom_complet }}</h1>
 
                     <p class="job">
                         Administrateur
@@ -84,7 +84,7 @@
                             mark_email_unread
                         </span>
 
-                        <h3>admin@gmail.com</h3>
+                        <h3>{{ admin.email }}</h3>
                     </div>
 
                     <div class="phone">
@@ -92,7 +92,7 @@
                             phone_in_talk
                         </span>
 
-                        <h3>+212 5 12 34 56 78</h3>
+                        <h3>{{ admin.telephone }}</h3>
                     </div>
 
                     <div class="role">
@@ -114,12 +114,12 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email">
+                        <input type="email" id="email" value="{{ admin.email }}">
                     </div>
 
                     <div class="form-group">
                         <label for="telephone">Téléphone</label>
-                        <input type="tel" id="telephone">
+                        <input type="tel" id="telephone" value="{{ admin.telephone }}">
                     </div>
 
                 </div>
@@ -128,12 +128,12 @@
 
                     <div class="form-group">
                         <label for="post">Poste</label>
-                        <input type="text" id="post">
+                        <input type="text" id="post" value="{{ admin.Departement }}">
                     </div>
 
                     <div class="form-group">
                         <label for="adresse">Adresse</label>
-                        <input type="text" id="adresse">
+                        <input type="text" id="adresse" value="{{ admin.adresse }}">
                     </div>
 
                 </div>

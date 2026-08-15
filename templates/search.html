@@ -16,28 +16,28 @@
             <h2>MatriTrack</h2>
         </div>
 
-        <a href="dashboard.html">
+        <a href="{{ url_for('dashboard') }}">
             <span class="material-symbols-outlined">
                 dashboard
             </span>
             <h3>Dashboard</h3>
         </a>
 
-        <a href="search.html">
+        <a href="{{ url_for('search') }}">
             <span class="material-symbols-outlined">
                 content_paste_search
             </span>
             <h3>Search</h3>
         </a>
 
-        <a href="add.html">
+        <a href="{{ url_for('add') }}">
             <span class="material-symbols-outlined">
                 add_box
             </span>
             <h3>Add</h3>
         </a>
 
-        <a href="profile.html" class="active">
+        <a href="{{ url_for('profile') }}" class="active">
             <span class="material-symbols-outlined">
                 person
             </span>

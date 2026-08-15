@@ -27,20 +27,20 @@
             </span>
         </div>
 
-        <a href="search.html">
+        <a href="{{ url_for('search') }}">
             <span class="material-symbols-outlined">
                 content_paste_search
             </span>
             <h3>Search</h3>
         </a>
 
-        <a href="Add.html">
+        <a href="{{ url_for('add') }}">
             <span class="material-symbols-outlined">
                 add_box
             </span>
             <h3>Add</h3>
         </a>
-         <a href="profil.html">
+         <a href="{{ url_for('profile') }}">
             <span class="material-symbols-outlined">
                 account_circle
             </span>
@@ -143,61 +143,33 @@
     <table>
         <thead>
             <tr>
-                <th>Référence</th>
+                <th>Nom complet</th>
                 <th>Type</th>
                 <th>Marque</th>
                 <th>Quantité</th>
-                <th>État</th>
-                <th>Action</th>
+                <th>Departement</th>
+                <th>Etat</th>
             </tr>
         </thead>
 
-        <tbody>
-            <tr>
-                <td>MAT-001</td>
-                <td>PC Portable</td>
-                <td>MSI</td>
-                <td>10</td>
-                <td class="success">Disponible</td>
-                <td class="primary">Voir</td>
-            </tr>
+     <tbody>
+         
 
-            <tr>
-                <td>MAT-002</td>
-                <td>Clavier</td>
-                <td>Logitech</td>
-                <td>15</td>
-                <td class="warning">Affecté</td>
-                <td class="primary">Voir</td>
-            </tr>
+        {% for materiel in derniers_materiels %}
 
-            <tr>
-                <td>MAT-003</td>
-                <td>Souris</td>
-                <td>HP</td>
-                <td>20</td>
-                <td class="success">Disponible</td>
-                <td class="primary">Voir</td>
-            </tr>
+     <tr>
+        <td>{{ materiel.nom_personne }}</td>
+        <td>{{ materiel.Type_materiels }}</td>
+        <td>{{ materiel.marque }}</td>
+        <td>{{ materiel.quantite }}</td>
+        <td>{{ materiel.Departement }}</td>
+        <td class="success">{{ materiel.etat }}</td>
+     </tr>
 
-            <tr>
-                <td>MAT-004</td>
-                <td>Écran</td>
-                <td>Dell</td>
-                <td>5</td>
-                <td class="danger">Maintenance</td>
-                <td class="primary">Voir</td>
-            </tr>
+     {% endfor %}
 
-            <tr>
-                <td>MAT-005</td>
-                <td>Imprimante</td>
-                <td>Canon</td>
-                <td>3</td>
-                <td class="danger">Hors service</td>
-                <td class="primary">Voir</td>
-            </tr>
-        </tbody>
+
+     </tbody>
     </table>
 </div>
 
