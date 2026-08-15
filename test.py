@@ -8,13 +8,13 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="houda2004",
-    database="MatriTrack"
+    database="MatriTrackBD"
 )
 
 
 @app.route("/")
 def home():
-    return render_template ('')
+    return render_template ('login.html')
 
 
 if __name__ == "__main__":

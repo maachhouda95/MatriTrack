@@ -9,38 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
 </head>
 <body>
     
-    <div class="container" method="POST" >
+    <div class="container"  >
         <h2 class="login">LOG IN </h2>
-        <div class="form">
+        <form class="form" action="/login" method="POST">
             
             <label class="label-login" for="">Id</label>
-            <input class="input-login" type="text" id="username">
+            <input class="input-login" type="text" id="username" name="username">
             
             <label class="label-login" for="">Password</label>
-            <input class="input-login" type="password" name="" id="password">
+            <input class="input-login" type="password"  id="password" name="password">
             
-        </div>
-        <button class="btn" onclick="login()"> Log in</button>
+        
+          <button class="btn" type="submit"> Log in</button>
+        </form>  
     </div>
 
 
-    <script>
-     
-    function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if (username.trim() !== "" && password.trim() !== "") {
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Please enter your Id and Password.");
-    }
-}
-</script>
-</script>
+   
 </body>
 </html>
