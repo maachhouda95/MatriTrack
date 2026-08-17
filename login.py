@@ -53,16 +53,51 @@ def dashboard():
         SELECT *
         FROM materiels
         ORDER BY id_materiel DESC
-        LIMIT 5
+        LIMIT 10000
     """)
 
     derniers_materiels = cursor.fetchall()
+
+    cursor.execute("""
+        SELECT COALESCE(SUM(quantite), 0) AS total
+        FROM materiels
+    """)
+
+    total = cursor.fetchone()["total"]
+
+    cursor.execute("""
+        SELECT COALESCE(SUM(quantite), 0) AS disponible
+        FROM materiels
+        WHERE etat = 'Disponible'
+    """)
+
+    disponible = cursor.fetchone()["disponible"]
+
+    cursor.execute("""
+        SELECT COALESCE(SUM(quantite), 0) AS affecte
+        FROM materiels
+        WHERE etat = 'Affecté'
+    """)
+
+    affecte = cursor.fetchone()["affecte"]
+
+    pourcentage_total = 100
+    pourcentage_disponible = round((disponible / total) * 100) if total > 0 else 0
+    pourcentage_affecte = round((affecte / total) * 100) if total > 0 else 0
+
     cursor.close()
 
     return render_template(
         "dashboard.html",
-        derniers_materiels=derniers_materiels
+        derniers_materiels=derniers_materiels,
+        total=total,
+        disponible=disponible,
+        affecte=affecte,
+        pourcentage_total=pourcentage_total,
+        pourcentage_disponible=pourcentage_disponible,
+        pourcentage_affecte=pourcentage_affecte
     )
+
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -102,8 +137,23 @@ def add():
 
 @app.route("/search")
 def search():
-    return render_template("search.html")
 
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT *
+        FROM materiels
+        ORDER BY id_materiel DESC
+    """)
+
+    materiels = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        "search.html",
+        materiels=materiels
+    )
 
 @app.route("/profil")
 def profile():
@@ -123,6 +173,70 @@ def profile():
     cursor.close()
 
     return render_template("profil.html", admin=admin)
+
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+
+    cursor = db.cursor(dictionary=True)
+
+    if request.method == "POST":
+
+        type_materiels = request.form.get("type_materiels")
+        marque = request.form.get("marque")
+        nom_personne = request.form.get("nom_personne")
+        departement = request.form.get("departement")
+        etat = request.form.get("etat")
+        quantite = request.form.get("quantite")
+
+        cursor.execute("""
+            UPDATE materiels
+            SET Type_materiels = %s,
+                marque = %s,
+                nom_personne = %s,
+                Departement = %s,
+                etat = %s,
+                quantite = %s
+            WHERE id_materiel = %s
+        """, (
+            type_materiels,
+            marque,
+            nom_personne,
+            departement,
+            etat,
+            quantite,
+            id
+        ))
+
+        db.commit()
+        cursor.close()
+
+        return redirect(url_for("search"))
+
+    cursor.execute(
+        "SELECT * FROM materiels WHERE id_materiel = %s",
+        (id,)
+    )
+
+    materiel = cursor.fetchone()
+    cursor.close()
+
+    return render_template("edit.html", materiel=materiel)
+
+
+@app.route("/delete/<int:id>")
+def delete(id):
+
+    cursor = db.cursor()
+
+    cursor.execute(
+        "DELETE FROM materiels WHERE id_materiel = %s",
+        (id,)
+    )
+
+    db.commit()
+    cursor.close()
+
+    return redirect(url_for("search"))    
 
 if __name__ == "__main__":
     app.run(debug=True)

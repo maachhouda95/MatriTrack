@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Liste des matériels</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
+
 <body>
-     <aside>
+
+    <aside>
 
         <div class="logo">
-            <img src="Colaimo.jpg" alt="COLAIMO Logo">
+            <img src="{{ url_for('static', filename='Colaimo.jpg') }}" alt="COLAIMO Logo">
             <h2>MatriTrack</h2>
         </div>
 
@@ -37,7 +43,7 @@
             <h3>Add</h3>
         </a>
 
-        <a href="{{ url_for('profile') }}" class="active">
+        <a href="{{ url_for('profile') }}">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -46,242 +52,148 @@
 
     </aside>
 
+
     <main>
 
+        <div class="page-header">
 
-    <div class="page-header">
+            <div>
+                <h1>Liste des matériels</h1>
+                <p>Gestion et suivi du parc informatique</p>
+            </div>
 
-        <div>
-            <h1>Liste des matériels</h1>
-            <p>Gestion et suivi du parc informatique</p>
+            <a href="{{ url_for('add') }}" class="add-button">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+                Ajouter un matériel
+            </a>
+
         </div>
 
-        <a href="add.html" class="add-button">
+
+        <div class="search-box">
+
             <span class="material-symbols-outlined">
-                add
+                search
             </span>
-            Ajouter un matériel
-        </a>
 
-    </div>
+            <input
+                type="text"
+                placeholder="Rechercher un matériel..."
+            >
 
-
-
-    <div class="search-box">
-
-        <span class="material-symbols-outlined">
-            search
-        </span>
-
-        <input
-            type="text"
-            placeholder="Rechercher un matériel..."
-        >
-
-    </div>
-
-    <div class="table-container">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Référence</th>
-                    <th>Type</th>
-                    <th>Marque</th>
-                    <th>Personne</th>
-                    <th>Département</th>
-                    <th>État</th>
-                    <th>Actions</th>
-                </tr>
-
-            </thead>
+        </div>
 
 
-            <tbody>
+        <div class="table-container">
 
-               
+            <table>
 
-                <tr>
+                <thead>
 
-                    <td>MAT-001</td>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Type</th>
+                        <th>Marque</th>
+                        <th>Personne</th>
+                        <th>Département</th>
+                        <th>État</th>
+                        <th>Actions</th>
+                    </tr>
 
-                    <td>PC</td>
+                </thead>
 
-                    <td>MSI</td>
 
-                    <td>Ahmed El Amrani</td>
+                <tbody>
 
-                    <td>Informatique</td>
+                    {% for materiel in materiels %}
 
-                    <td>
-                        <span class="status available">
-                            Disponible
-                        </span>
-                    </td>
+                    <tr>
 
-                    <td>
+                        <td>
+                            MAT-{{ "%03d"|format(materiel.id_materiel) }}
+                        </td>
 
-                        <div class="actions">
+                        <td>
+                            {{ materiel.Type_materiels }}
+                        </td>
 
-                            
+                        <td>
+                            {{ materiel.marque }}
+                        </td>
 
-                            <button class="edit">
-                                <span class="material-symbols-outlined">
-                                    edit
+                        <td>
+                            {{ materiel.nom_personne }}
+                        </td>
+
+                        <td>
+                            {{ materiel.Departement }}
+                        </td>
+
+                        <td>
+
+                            {% if materiel.etat == "Disponible" %}
+
+                                <span class="status available">
+                                    Disponible
                                 </span>
-                            </button>
 
-                            
+                            {% elif materiel.etat == "Affecté" %}
 
-                            <button class="delete">
-                                <span class="material-symbols-outlined">
-                                    delete
+                                <span class="status assigned">
+                                    Affecté
                                 </span>
-                            </button>
 
-                        </div>
+                            {% elif materiel.etat == "Maintenance" %}
 
-                    </td>
-
-                </tr>
-
-
-                
-
-                <tr>
-
-                    <td>MAT-002</td>
-
-                    <td>Clavier</td>
-
-                    <td>Logitech</td>
-
-                    <td>Sara Benali</td>
-
-                    <td>Finance</td>
-
-                    <td>
-                        <span class="status assigned">
-                            Affecté
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button class="edit">
-                                <span class="material-symbols-outlined">
-                                    edit
+                                <span class="status maintenance">
+                                    Maintenance
                                 </span>
-                            </button>
 
-                            <button class="delete">
-                                <span class="material-symbols-outlined">
-                                    delete
+                            {% elif materiel.etat == "Hors service" %}
+
+                                <span class="status unavailable">
+                                    Hors service
                                 </span>
-                            </button>
 
-                        </div>
+                            {% else %}
 
-                    </td>
-
-                </tr>
-
-
-                
-
-                <tr>
-
-                    <td>MAT-003</td>
-
-                    <td>Souris</td>
-
-                    <td>HP</td>
-
-                    <td>Youssef Alaoui</td>
-
-                    <td>Ressources Humaines</td>
-
-                    <td>
-                        <span class="status maintenance">
-                            Maintenance
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button class="edit">
-                                <span class="material-symbols-outlined">
-                                    edit
+                                <span class="status">
+                                    {{ materiel.etat }}
                                 </span>
-                            </button>
 
-                            <button class="delete">
-                                <span class="material-symbols-outlined">
-                                    delete
-                                </span>
-                            </button>
+                            {% endif %}
 
-                        </div>
-
-                    </td>
-
-                </tr>
+                        </td>
 
 
-               
+                        <td>
 
-                <tr>
+                            <a href="{{ url_for('edit', id=materiel.id_materiel) }}"
+                               class="edit-btn">
+                                ✏️
+                            </a>
 
-                    <td>MAT-004</td>
+                            <a href="{{ url_for('delete', id=materiel.id_materiel) }}"
+                               class="delete-btn"
+                               onclick="return confirm('Voulez-vous supprimer ce matériel ?')">
+                                🗑️
+                            </a>
 
-                    <td>Imprimante</td>
+                        </td>
 
-                    <td>HP</td>
+                    </tr>
 
-                    <td>—</td>
+                    {% endfor %}
 
-                    <td>Comptabilité</td>
+                </tbody>
 
-                    <td>
-                        <span class="status available">
-                            Disponible
-                        </span>
-                    </td>
+            </table>
 
-                    <td>
+        </div>
 
-                        <div class="actions">
+    </main>
 
-                            <button class="edit">
-                                <span class="material-symbols-outlined">
-                                    edit
-                                </span>
-                            </button>
-
-                            <button class="delete">
-                                <span class="material-symbols-outlined">
-                                    delete
-                                </span>
-                            </button>
-
-                        </div>
-
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</main>
 </body>
 </html>

@@ -17,7 +17,7 @@
     <aside>
 
         <div class="logo">
-            <img src="Colaimo.jpg" alt="COLAIMO Logo">
+            <img src="{{ url_for('static', filename='Colaimo.jpg') }}" alt="COLAIMO Logo">
             <h2>MatriTrack</h2>
         </div>
 
@@ -68,7 +68,7 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Total des Matériels</h3>
-                        <h1>200</h1>
+                        <h1>{{ total }}</h1>
                     </div>
 
                     <div class="prog">
@@ -77,7 +77,7 @@
                         </svg>
 
                         <div class="number">
-                            <p>81%</p>
+                            <p>{{ pourcentage_total }}%</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Matériels Disponibles</h3>
-                        <h1>89</h1>
+                        <h1>{{ disponible }}</h1>
                     </div>
 
                     <div class="prog">
@@ -102,7 +102,7 @@
                         </svg>
 
                         <div class="number">
-                            <p>81%</p>
+                            <p>{{ pourcentage_disponible }}%</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 <div class="middle">
                     <div class="left">
                         <h3>Matériels Affectés</h3>
-                        <h1>111</h1>
+                        <h1>{{ affecte }}</h1>
                     </div>
 
                     <div class="prog">
@@ -127,7 +127,7 @@
                         </svg>
 
                         <div class="number">
-                            <p>81%</p>
+                            <p>{{ pourcentage_affecte }}%</p>
                         </div>
                     </div>
                 </div>
