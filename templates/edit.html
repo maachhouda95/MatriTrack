@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier matériel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+
+<body>
+
+<main>
+
+    <div class="edit-container">
+
+        <h1>Modifier le matériel</h1>
+        <p>Modifiez les informations du matériel</p>
+
+        <form method="POST" action="{{ url_for('edit', id=materiel.id_materiel) }}">
+
+            <div class="form-group">
+                <label for="type">Type de matériel</label>
+
+                <select name="type_materiels" id="type" required>
+                    <option value="Pc" {% if materiel.Type_materiels == "Pc" %}selected{% endif %}>
+                        PC
+                    </option>
+
+                    <option value="Souris" {% if materiel.Type_materiels == "Souris" %}selected{% endif %}>
+                        Souris
+                    </option>
+
+                    <option value="Clavier" {% if materiel.Type_materiels == "Clavier" %}selected{% endif %}>
+                        Clavier
+                    </option>
+
+                    <option value="Unite centrale" {% if materiel.Type_materiels == "Unite centrale" %}selected{% endif %}>
+                        Unité centrale
+                    </option>
+
+                    <option value="Imprimante" {% if materiel.Type_materiels == "Imprimante" %}selected{% endif %}>
+                        Imprimante
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="marque">Marque</label>
+                <input
+                    type="text"
+                    id="marque"
+                    name="marque"
+                    value="{{ materiel.marque }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="nom_personne">Nom complet</label>
+                <input
+                    type="text"
+                    id="nom_personne"
+                    name="nom_personne"
+                    value="{{ materiel.nom_personne }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="departement">Département</label>
+                <select name="departement" id="departement">
+
+                    <option value="informatique"
+                        {% if materiel.Departement == "informatique" %}selected{% endif %}>
+                        Informatique
+                    </option>
+
+                    <option value="rh"
+                        {% if materiel.Departement == "rh" %}selected{% endif %}>
+                        Ressources Humaines
+                    </option>
+
+                    <option value="finance"
+                        {% if materiel.Departement == "finance" %}selected{% endif %}>
+                        Finance
+                    </option>
+
+                    <option value="comptabilite"
+                        {% if materiel.Departement == "comptabilite" %}selected{% endif %}>
+                        Comptabilité
+                    </option>
+
+                    <option value="commercial"
+                        {% if materiel.Departement == "commercial" %}selected{% endif %}>
+                        Commercial
+                    </option>
+
+                    <option value="production"
+                        {% if materiel.Departement == "production" %}selected{% endif %}>
+                        Production
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="etat">État</label>
+
+                <select name="etat" id="etat">
+
+                    <option value="Disponible"
+                        {% if materiel.etat == "Disponible" %}selected{% endif %}>
+                        Disponible
+                    </option>
+
+                    <option value="Affecté"
+                        {% if materiel.etat == "Affecté" %}selected{% endif %}>
+                        Affecté
+                    </option>
+
+                    <option value="Maintenance"
+                        {% if materiel.etat == "Maintenance" %}selected{% endif %}>
+                        Maintenance
+                    </option>
+
+                    <option value="Hors service"
+                        {% if materiel.etat == "Hors service" %}selected{% endif %}>
+                        Hors service
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantite">Quantité</label>
+
+                <input
+                    type="number"
+                    id="quantite"
+                    name="quantite"
+                    value="{{ materiel.quantite }}"
+                    min="1"
+                    required
+                >
+            </div>
+
+            <div class="buttons">
+
+                <a href="{{ url_for('search') }}" class="cancel-btn">
+                    Annuler
+                </a>
+
+                <button type="submit" class="save-btn">
+                    Enregistrer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

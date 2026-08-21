@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ajouter un matériel</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='Add.css') }}">
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 </head>
+
 <body>
-     <aside>
+
+    <aside>
 
         <div class="logo">
             <img src="{{ url_for('static', filename='Colaimo.jpg') }}" alt="COLAIMO Logo">
@@ -30,14 +35,14 @@
             <h3>Search</h3>
         </a>
 
-        <a href="{{ url_for('add') }}">
+        <a href="{{ url_for('add') }}" class="active">
             <span class="material-symbols-outlined">
                 add_box
             </span>
             <h3>Add</h3>
         </a>
 
-        <a href="{{ url_for('profile') }}" class="active">
+        <a href="{{ url_for('profile') }}">
             <span class="material-symbols-outlined">
                 person
             </span>
@@ -47,66 +52,90 @@
     </aside>
 
     <main>
-       <div class="add-mater">
-        <div>
-            <h3>Ajouter un materiel</h3>
-            <h4>Remplissez les informations pour ajouter un nouveau materiel au parc informatique</h4>
-        </div>
-        <div class="info-mater">
 
-            <form  class="info-mater" method="POST" action="{{ url_for('add') }}">
+        <div class="add-mater">
+
+            <div>
+                <h3>Ajouter un matériel</h3>
+                <h4>
+                    Remplissez les informations pour ajouter un nouveau matériel au parc informatique
+                </h4>
+            </div>
+
+            <form class="info-mater" method="POST" action="{{ url_for('add') }}">
+
                 <div>
-                    <label for="type"> Type de materiel</label>
+                    <label for="type">Type de matériel</label>
+
                     <select name="type_materiels" id="type" required>
-                        <option value="">choisis un materiel</option>
-                        <option value="">Pc</option>
-                        <option value="">Souris</option>
-                        <option value="">Clavier</option>
-                        <option value="">Unite centrale</option>
-                        <option value="">Impremante</option>
+                        <option value="">Choisis un matériel</option>
+                        <option value="Pc">PC</option>
+                        <option value="Souris">Souris</option>
+                        <option value="Clavier">Clavier</option>
+                        <option value="Unite centrale">Unité centrale</option>
+                        <option value="Imprimante">Imprimante</option>
                     </select>
-                
-                
                 </div>
 
                 <div>
-                <label for="marque">Marque</label>
-                <input type="text" id="marque" name="marque" required>
+                    <label for="marque">Marque</label>
+                    <input type="text" id="marque" name="marque" required>
                 </div>
 
+                <div>
+                    <label for="nom_personne">Nom complet</label>
+                    <input type="text" name="nom_personne" id="nom_personne" required>
+                </div>
 
-             <div>
-                <label for="">Nom complet</label>
-                <input type="text" name="nom_personne" id="nom_personne" required>
-             </div>
+                <div>
+                    <label for="departement">Département</label>
 
+                    <select name="departement" id="departement" required>
+                        <option value="">Sélectionner un département</option>
+                        <option value="informatique">Informatique</option>
+                        <option value="rh">Ressources Humaines</option>
+                        <option value="finance">Finance</option>
+                        <option value="comptabilite">Comptabilité</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="production">Production</option>
+                    </select>
+                </div>
 
+                <div>
+                    <label for="etat">État</label>
 
-             <div>
-                <label for="">Departement</label>
-                <select name="departement" id="departement">
-                    <option value="">Sélectionner un département</option>
-                    <option value="informatique">Informatique</option>
-                    <option value="rh">Ressources Humaines</option>
-                    <option value="finance">Finance</option>
-                    <option value="comptabilite">Comptabilité</option>
-                    <option value="commercial">Commercial</option>
-                    <option value="production">Production</option>
-                </select>
-             </div>
-              <button type="submit">Ajouter le matériel</button>
+                    <select name="etat" id="etat" required>
+                        <option value="">Sélectionner un état</option>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Affecté">Affecté</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Hors service">Hors service</option>
+                    </select>
+                </div>
 
-              </div>
+                <div>
+                    <label for="quantite">Quantité</label>
 
+                    <input
+                        type="number"
+                        name="quantite"
+                        id="quantite"
+                        min="1"
+                        value="1"
+                        required
+                    >
+                </div>
 
-
+                <button type="submit">
+                    Ajouter le matériel
+                </button>
 
             </form>
 
+        </div>
 
-
-           
-       </div> 
     </main>
+
 </body>
+
 </html>

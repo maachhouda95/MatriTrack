@@ -109,20 +109,24 @@ def add():
         marque = request.form.get("marque")
         nom_personne = request.form.get("nom_personne")
         departement = request.form.get("departement")
+        etat = request.form.get("etat")
+        quantite = request.form.get("quantite")
 
         cursor = db.cursor()
 
         cursor.execute(
             """
             INSERT INTO materiels
-            (Type_materiels, marque, nom_personne, Departement, id_admin)
-            VALUES (%s, %s, %s, %s, %s)
+            (Type_materiels, marque, nom_personne, Departement,etat,quantite, id_admin)
+            VALUES (%s, %s, %s, %s, %s,%s,%s)
             """,
             (
                 type_materiels,
                 marque,
                 nom_personne,
                 departement,
+                etat,
+                quantite,
                 session["id_admin"]
             )
         )
@@ -176,11 +180,9 @@ def profile():
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
-
     cursor = db.cursor(dictionary=True)
 
     if request.method == "POST":
-
         type_materiels = request.form.get("type_materiels")
         marque = request.form.get("marque")
         nom_personne = request.form.get("nom_personne")
@@ -220,8 +222,10 @@ def edit(id):
     materiel = cursor.fetchone()
     cursor.close()
 
-    return render_template("edit.html", materiel=materiel)
+    if not materiel:
+        return "Matériel introuvable", 404
 
+    return render_template("edit.html", materiel=materiel)
 
 @app.route("/delete/<int:id>")
 def delete(id):
@@ -236,8 +240,15 @@ def delete(id):
     db.commit()
     cursor.close()
 
-    return redirect(url_for("search"))    
+    return redirect(url_for("search"))   
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))     
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
     

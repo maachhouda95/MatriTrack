@@ -59,7 +59,10 @@
             <div class="prof-info">
 
                 <div class="profile-picture">
-                    <img src="{{ url_for('static', filename=admin1.jpg) }}" alt="Profile" alt="Profile">
+                  {% if admin.photo_profil %}
+                    <img src="{{ url_for('static', filename= admin.photo) }}" alt="Profile" >
+                  {% endif %}  
+                 
                 </div>
 
                 <div class="profile-main">
@@ -158,7 +161,10 @@
                     </div>
 
                 </div>
-
+                <a href="{{ url_for('logout') }}" class="logout-btn">
+                     <span class="material-symbols-outlined">logout</span>
+                      Déconnecter
+                </a>
             </div>
 
         </div>

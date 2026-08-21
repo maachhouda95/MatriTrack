@@ -316,4 +316,32 @@ main {
         height: 100px;
     }
 }
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 180px;
+    height: 45px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 10px;
+    background: #ef4444;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.logout-btn span {
+    font-size: 20px;
+}
+
 
