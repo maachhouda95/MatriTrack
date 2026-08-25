@@ -1,27 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for,session
+from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 
 app = Flask(__name__)
-app.secret_key="matritrack-secret-key"
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="houda2004",
-    database="MatriTrackBD"
-)
+app.secret_key = "matritrack-secret-key"
+
+
+def get_db():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="houda2004",
+        database="MatriTrackBD"
+    )
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     if request.method == "POST":
-
         username = request.form.get("username")
         password = request.form.get("password")
 
-        print(username)
-        print(password)
-
+        db = get_db()
         cursor = db.cursor(dictionary=True)
 
         cursor.execute(
@@ -30,12 +30,13 @@ def login():
         )
 
         admin = cursor.fetchone()
+
         cursor.close()
+        db.close()
 
         if admin:
-            session["id_admin"]=admin["id_admin"]
+            session["id_admin"] = admin["id_admin"]
             return redirect(url_for("dashboard"))
-
         else:
             return render_template(
                 "login.html",
@@ -44,9 +45,10 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/dashboard")
 def dashboard():
-
+    db = get_db()
     cursor = db.cursor(dictionary=True)
 
     cursor.execute("""
@@ -55,14 +57,12 @@ def dashboard():
         ORDER BY id_materiel DESC
         LIMIT 10000
     """)
-
     derniers_materiels = cursor.fetchall()
 
     cursor.execute("""
         SELECT COALESCE(SUM(quantite), 0) AS total
         FROM materiels
     """)
-
     total = cursor.fetchone()["total"]
 
     cursor.execute("""
@@ -70,7 +70,6 @@ def dashboard():
         FROM materiels
         WHERE etat = 'Disponible'
     """)
-
     disponible = cursor.fetchone()["disponible"]
 
     cursor.execute("""
@@ -78,7 +77,6 @@ def dashboard():
         FROM materiels
         WHERE etat = 'Affecté'
     """)
-
     affecte = cursor.fetchone()["affecte"]
 
     pourcentage_total = 100
@@ -86,6 +84,7 @@ def dashboard():
     pourcentage_affecte = round((affecte / total) * 100) if total > 0 else 0
 
     cursor.close()
+    db.close()
 
     return render_template(
         "dashboard.html",
@@ -99,12 +98,12 @@ def dashboard():
     )
 
 
-
 @app.route("/add", methods=["GET", "POST"])
 def add():
+    if "id_admin" not in session:
+        return redirect(url_for("login"))
 
     if request.method == "POST":
-
         type_materiels = request.form.get("type_materiels")
         marque = request.form.get("marque")
         nom_personne = request.form.get("nom_personne")
@@ -112,13 +111,14 @@ def add():
         etat = request.form.get("etat")
         quantite = request.form.get("quantite")
 
+        db = get_db()
         cursor = db.cursor()
 
         cursor.execute(
             """
             INSERT INTO materiels
-            (Type_materiels, marque, nom_personne, Departement,etat,quantite, id_admin)
-            VALUES (%s, %s, %s, %s, %s,%s,%s)
+            (Type_materiels, marque, nom_personne, Departement, etat, quantite, id_admin)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 type_materiels,
@@ -132,7 +132,9 @@ def add():
         )
 
         db.commit()
+
         cursor.close()
+        db.close()
 
         return redirect(url_for("add"))
 
@@ -141,7 +143,7 @@ def add():
 
 @app.route("/search")
 def search():
-
+    db = get_db()
     cursor = db.cursor(dictionary=True)
 
     cursor.execute("""
@@ -153,11 +155,13 @@ def search():
     materiels = cursor.fetchall()
 
     cursor.close()
+    db.close()
 
     return render_template(
         "search.html",
         materiels=materiels
     )
+
 
 @app.route("/profil")
 def profile():
@@ -166,6 +170,7 @@ def profile():
     if not id_admin:
         return redirect(url_for("login"))
 
+    db = get_db()
     cursor = db.cursor(dictionary=True)
 
     cursor.execute(
@@ -174,12 +179,19 @@ def profile():
     )
 
     admin = cursor.fetchone()
-    cursor.close()
 
-    return render_template("profil.html", admin=admin)
+    cursor.close()
+    db.close()
+
+    return render_template(
+        "profil.html",
+        admin=admin
+    )
+
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
+    db = get_db()
     cursor = db.cursor(dictionary=True)
 
     if request.method == "POST":
@@ -190,7 +202,8 @@ def edit(id):
         etat = request.form.get("etat")
         quantite = request.form.get("quantite")
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE materiels
             SET Type_materiels = %s,
                 marque = %s,
@@ -199,18 +212,22 @@ def edit(id):
                 etat = %s,
                 quantite = %s
             WHERE id_materiel = %s
-        """, (
-            type_materiels,
-            marque,
-            nom_personne,
-            departement,
-            etat,
-            quantite,
-            id
-        ))
+            """,
+            (
+                type_materiels,
+                marque,
+                nom_personne,
+                departement,
+                etat,
+                quantite,
+                id
+            )
+        )
 
         db.commit()
+
         cursor.close()
+        db.close()
 
         return redirect(url_for("search"))
 
@@ -220,16 +237,22 @@ def edit(id):
     )
 
     materiel = cursor.fetchone()
+
     cursor.close()
+    db.close()
 
     if not materiel:
         return "Matériel introuvable", 404
 
-    return render_template("edit.html", materiel=materiel)
+    return render_template(
+        "edit.html",
+        materiel=materiel
+    )
+
 
 @app.route("/delete/<int:id>")
 def delete(id):
-
+    db = get_db()
     cursor = db.cursor()
 
     cursor.execute(
@@ -238,17 +261,19 @@ def delete(id):
     )
 
     db.commit()
-    cursor.close()
 
-    return redirect(url_for("search"))   
-@app.route('/logout')
+    cursor.close()
+    db.close()
+
+    return redirect(url_for("search"))
+
+
+@app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for('login'))     
+    return redirect(url_for("login"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-
-
-    

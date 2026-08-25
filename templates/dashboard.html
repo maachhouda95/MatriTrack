@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COLAIMO</title>
     <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
 </head>
 
 <body>
- 
-    <div class="container">
 
-    
+<div class="container">
+
     <aside>
 
         <div class="logo">
@@ -21,46 +20,47 @@
             <h2>MatriTrack</h2>
         </div>
 
-        <div class="close" id="close-btn">
-            <span class="material-symbols-outlined">
-                close
-            </span>
-        </div>
+        <a href="{{ url_for('dashboard') }}" class="active">
+            <span class="material-symbols-outlined">dashboard</span>
+            <h3>Dashboard</h3>
+        </a>
 
         <a href="{{ url_for('search') }}">
-            <span class="material-symbols-outlined">
-                content_paste_search
-            </span>
+            <span class="material-symbols-outlined">content_paste_search</span>
             <h3>Search</h3>
         </a>
 
         <a href="{{ url_for('add') }}">
-            <span class="material-symbols-outlined">
-                add_box
-            </span>
+            <span class="material-symbols-outlined">add_box</span>
             <h3>Add</h3>
-        </a>
-         <a href="{{ url_for('profile') }}">
-            <span class="material-symbols-outlined">
-                account_circle
-            </span>
-            <h3>Profil</h3>
         </a>
 
     </aside>
 
-    
     <main>
 
-        <h1>Dashboard</h1>
+        <nav class="top-nav">
+            <div class="nav-title">
+                <h1>Dashboard</h1>
+                <p>Gestion du parc informatique</p>
+            </div>
 
+            <a href="{{ url_for('profile') }}" class="profile-nav">
+                <span class="material-symbols-outlined">account_circle</span>
+                <div>
+                    <strong>Profil</strong>
+                    <small>Administrateur</small>
+                </div>
+                <span class="material-symbols-outlined arrow">chevron_right</span>
+            </a>
+        </nav>
 
         <div class="insights">
 
-            <div class="sales">
-                <span class="material-symbols-outlined">
-                    analytics
-                </span>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                </div>
 
                 <div class="middle">
                     <div class="left">
@@ -68,22 +68,19 @@
                         <h1>{{ total }}</h1>
                     </div>
 
-                    <div class="prog">
-                        <svg>
-                            <circle cx="38" cy="38" r="36"></circle>
-                        </svg>
-
-                       
+                    <div class="percentage">
+                        <span class="material-symbols-outlined">inventory</span>
+                        <strong>100%</strong>
                     </div>
                 </div>
 
-                
+                <p class="stat-footer">Total dans le parc</p>
             </div>
 
-            <div class="sales">
-                <span class="material-symbols-outlined">
-                    analytics
-                </span>
+            <div class="stat-card available-card">
+                <div class="stat-icon">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </div>
 
                 <div class="middle">
                     <div class="left">
@@ -91,21 +88,19 @@
                         <h1>{{ disponible }}</h1>
                     </div>
 
-                    <div class="prog">
-                        <svg>
-                            <circle cx="38" cy="38" r="36"></circle>
-                        </svg>
-
+                    <div class="percentage">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <strong>{{ pourcentage_disponible }}%</strong>
                     </div>
                 </div>
 
-                
+                <p class="stat-footer">Matériels disponibles</p>
             </div>
 
-            <div class="dispo">
-                <span class="material-symbols-outlined">
-                    analytics
-                </span>
+            <div class="stat-card assigned-card">
+                <div class="stat-icon">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
 
                 <div class="middle">
                     <div class="left">
@@ -113,58 +108,146 @@
                         <h1>{{ affecte }}</h1>
                     </div>
 
-                    <div class="prog">
-                        <svg>
-                            <circle cx="38" cy="38" r="36"></circle>
-                        </svg>
-
-                       
+                    <div class="percentage">
+                        <span class="material-symbols-outlined">assignment_ind</span>
+                        <strong>{{ pourcentage_affecte }}%</strong>
                     </div>
                 </div>
 
-                
+                <p class="stat-footer">Matériels affectés</p>
             </div>
 
         </div>
 
         <div class="recent-orders">
-    <h2>Derniers Matériels</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nom complet</th>
-                <th>Type</th>
-                <th>Marque</th>
-                <th>Quantité</th>
-                <th>Departement</th>
-                <th>Etat</th>
-            </tr>
-        </thead>
+            <div class="table-header">
+                <div>
+                    <h2>Derniers Matériels</h2>
+                    <p>Les derniers matériels ajoutés au parc</p>
+                </div>
 
-     <tbody>
-         
+                <a href="{{ url_for('search') }}" class="view-all">
+                    Voir tous
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
 
-        {% for materiel in derniers_materiels %}
+            <div class="table-container">
 
-     <tr>
-        <td>{{ materiel.nom_personne }}</td>
-        <td>{{ materiel.Type_materiels }}</td>
-        <td>{{ materiel.marque }}</td>
-        <td>{{ materiel.quantite }}</td>
-        <td>{{ materiel.Departement }}</td>
-        <td class="success">{{ materiel.etat }}</td>
-     </tr>
+                <table>
 
-     {% endfor %}
+                    <thead>
+                        <tr>
+                            <th>Référence</th>
+                            <th>Nom complet</th>
+                            <th>Type</th>
+                            <th>Marque</th>
+                            <th>Quantité</th>
+                            <th>Département</th>
+                            <th>État</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
 
-     </tbody>
-    </table>
-</div>
+                    {% for materiel in derniers_materiels %}
+
+                        <tr>
+
+                            <td>
+                                <span class="reference">
+                                    MAT-{{ "%03d"|format(materiel.id_materiel) }}
+                                </span>
+                            </td>
+
+                            <td class="person-name">
+                                {{ materiel.nom_personne }}
+                            </td>
+
+                            <td>
+                                <span class="type-badge">
+                                    {{ materiel.Type_materiels }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ materiel.marque }}
+                            </td>
+
+                            <td>
+                                <span class="quantity">
+                                    {{ materiel.quantite }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ materiel.Departement }}
+                            </td>
+
+                            <td>
+
+                                {% if materiel.etat == "Disponible" %}
+
+                                    <span class="status available">
+                                        <span class="status-dot"></span>
+                                        Disponible
+                                    </span>
+
+                                {% elif materiel.etat == "Affecté" %}
+
+                                    <span class="status assigned">
+                                        <span class="status-dot"></span>
+                                        Affecté
+                                    </span>
+
+                                {% elif materiel.etat == "Maintenance" %}
+
+                                    <span class="status maintenance">
+                                        <span class="status-dot"></span>
+                                        Maintenance
+                                    </span>
+
+                                {% elif materiel.etat == "Hors service" %}
+
+                                    <span class="status danger">
+                                        <span class="status-dot"></span>
+                                        Hors service
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status">
+                                        {{ materiel.etat }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                    {% else %}
+
+                        <tr>
+                            <td colspan="7" class="empty">
+                                Aucun matériel ajouté
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
 
     </main>
 
 </div>
+
 </body>
 </html>
