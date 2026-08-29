@@ -74,12 +74,12 @@ aside a h3 {
 }
 
 aside a:hover {
-    background: #4F46E5;
+    background: #35B8C0;
     color: white;
 }
 
 aside a.active {
-    background: #4F46E5;
+    background: #35B8C0;
     color: white;
 }
 
@@ -131,7 +131,7 @@ main {
 
     padding: 12px 18px;
 
-    background: #4F46E5;
+    background: #35B8C0;
     color: white;
 
     border-radius: 10px;
@@ -144,7 +144,7 @@ main {
 }
 
 .add-button:hover {
-    background: #3730A3;
+    background: #35B8C0;
 }
 
 .add-button span {
@@ -263,7 +263,7 @@ tbody tr:hover {
 }
 .assigned {
     background: #eeeaff;
-    color: #4F46E5;
+    color: ;
 }
 
 

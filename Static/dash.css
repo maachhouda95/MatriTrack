@@ -67,7 +67,7 @@ aside a h3 {
 
 aside a:hover,
 aside a.active {
-    background: #4f46e5;
+    background: #35B8C0;
     color: #fff;
 }
 
@@ -115,7 +115,7 @@ main {
 
 .profile-nav > span:first-child {
     font-size: 38px;
-    color: #4f46e5;
+    color: #35B8C0;
 }
 
 .profile-nav div {
@@ -164,7 +164,7 @@ main {
     align-items: center;
     justify-content: center;
     background: #eef0ff;
-    color: #4f46e5;
+    color: #35B8C0;
 }
 
 .stat-icon span {
@@ -199,7 +199,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #4f46e5;
+    color: #35B8C0;
 }
 
 .percentage span {
@@ -229,12 +229,12 @@ main {
 
 .assigned-card .stat-icon {
     background: #eeebff;
-    color: #6855e8;
+    color: #35B8C0;
 }
 
 .assigned-card .percentage {
     background: #eeebff;
-    color: #6855e8;
+    color: #35B8C0;
 }
 
 .recent-orders {
@@ -264,7 +264,7 @@ main {
     align-items: center;
     gap: 5px;
     text-decoration: none;
-    color: #4f46e5;
+    color: #35B8C0;
     font-size: 14px;
     font-weight: 600;
 }
@@ -319,7 +319,7 @@ tbody tr:last-child td {
 }
 
 .reference {
-    color: #4f46e5;
+    color: #35B8C0;
     font-weight: 700;
     background: #f0efff;
     padding: 7px 10px;
@@ -375,7 +375,7 @@ tbody tr:last-child td {
 }
 
 .status.assigned {
-    color: #5b4de8;
+    color: #35B8C0;
     background: #eeecff;
 }
 

@@ -66,7 +66,7 @@ aside a h3 {
 
 aside a:hover,
 aside a.active {
-    background: #4F46E5;
+    background: #35B8C0;
     color: white;
 }
 
@@ -141,7 +141,7 @@ main {
 
 .info-mater input:focus,
 .info-mater select:focus {
-    border-color: #4F46E5;
+    border-color: #35B8C0;
     background: #fff;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
@@ -156,7 +156,7 @@ main {
     height: 48px;
     border: none;
     border-radius: 10px;
-    background: #4F46E5;
+    background: #35B8C0;
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -166,7 +166,7 @@ main {
 }
 
 .info-mater button:hover {
-    background: #4338CA;
+    background: #35B8C0;
     transform: translateY(-1px);
 }
 
